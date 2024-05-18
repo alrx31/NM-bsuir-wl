@@ -1,0 +1,494 @@
+{
+ "cells": [
+  {
+   "kind": 2,
+   "value": "(*Variant 2*)\r\n(*\r\nB = Table[3*i - 2*29, {i, 1, 7}];\r\nA = Table[1/(i + j - 1), {i, 1, 7}, {j, 1, 7}];\r\n*)\r\n(*variant 1*)\r\n(*\r\nA = Table[1/(i + j - 1), {i, 1, 7}, {j, 1, 7}];\r\n*)\r\n\r\nA = Table[If[i>j,1,If[i<j,2,i+1]],{i,1,7},{j,1,7} ];\r\n\r\nB = Table[3*j-2*29,{j,1,7}];\r\n\r\nMatrixForm[A]\r\nMatrixForm[B]\r\n\r\ncond = Norm[A] * Norm[Inverse[A]] //N\r\n\r\n\r\n\r\n\r\nMatrixForm[A]\r\nMatrixForm[B]\r\nPrint[\"Test\"]\r\nA1 = Inverse[A]\r\nMatrixForm[A1];\r\nDet[A]\r\nt = MatrixForm[Dot[A, A1]];\r\ng = MatrixForm[Dot[A1,B]];\r\nPrint[\"Right\"]\r\nx = LinearSolve[A, B];\r\nMatrixForm[x];\r\ndeltsdaada = {\r\n    0,0,0,0,0,0,0.001\r\n};\r\nx1 = LinearSolve[A, B + deltsdaada];\r\nx = LinearSolve[A,B];\r\nTableForm[Table[{\r\n    Norm[x1 - x,Infinity] // N,\r\n    Norm[LinearSolve[A, B+deltsdaada] - x, Infinity] / Norm[x, Infinity] // N,\r\n    Norm[Dot[A, LinearSolve[A, B+deltsdaada]] - B,Infinity] // N\r\n}]]\r\n",
+   "languageId": "wolfram",
+   "outputs": [
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wrow><w></w><wb>(</wb><w>⁠</w><wgrid style=\"grid-template-columns:repeat(7,max-content);\"><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>1</w></w><w><w>3</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>1</w></w><w><w>1</w></w><w><w>4</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>5</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>6</w></w><w><w>2</w></w><w><w>2</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>7</w></w><w><w>2</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>8</w></w></wgrid><w>⁠</w><wb>)</wb></wrow></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "MatrixForm[{{2, 2, 2, 2, 2, 2, 2}, {1, 3, 2, 2, 2, 2, 2}, {1, 1, 4, 2, 2, 2, 2}, {1, 1, 1, 5, 2, 2, 2}, {1, 1, 1, 1, 6, 2, 2}, {1, 1, 1, 1, 1, 7, 2}, {1, 1, 1, 1, 1, 1, 8}}]",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "c46528da-0b03-4196-912e-3964f5617a07",
+     "metadata": {
+      "cellLabel": "Out[360]//MatrixForm= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wrow><w></w><wb>(</wb><w>⁠</w><wgrid style=\"grid-template-columns:repeat(1,max-content);\"><w><wrow><w></w><w>-</w><w>55</w></wrow></w><w><wrow><w></w><w>-</w><w>52</w></wrow></w><w><wrow><w></w><w>-</w><w>49</w></wrow></w><w><wrow><w></w><w>-</w><w>46</w></wrow></w><w><wrow><w></w><w>-</w><w>43</w></wrow></w><w><wrow><w></w><w>-</w><w>40</w></wrow></w><w><wrow><w></w><w>-</w><w>37</w></wrow></w></wgrid><w>⁠</w><wb>)</wb></wrow></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "MatrixForm[{-55, -52, -49, -46, -43, -40, -37}]",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "6dfdd206-b3e1-4400-8ed0-b18dc6bce58d",
+     "metadata": {
+      "cellLabel": "Out[361]//MatrixForm= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><w>16.3711</w></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "16.371093108727514",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "9876e0eb-11b0-4aa4-a590-e48c26215212",
+     "metadata": {
+      "cellLabel": "Out[362]= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wrow><w></w><wb>(</wb><w>⁠</w><wgrid style=\"grid-template-columns:repeat(7,max-content);\"><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>1</w></w><w><w>3</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>1</w></w><w><w>1</w></w><w><w>4</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>5</w></w><w><w>2</w></w><w><w>2</w></w><w><w>2</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>6</w></w><w><w>2</w></w><w><w>2</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>7</w></w><w><w>2</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>8</w></w></wgrid><w>⁠</w><wb>)</wb></wrow></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "MatrixForm[{{2, 2, 2, 2, 2, 2, 2}, {1, 3, 2, 2, 2, 2, 2}, {1, 1, 4, 2, 2, 2, 2}, {1, 1, 1, 5, 2, 2, 2}, {1, 1, 1, 1, 6, 2, 2}, {1, 1, 1, 1, 1, 7, 2}, {1, 1, 1, 1, 1, 1, 8}}]",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "192ab7f5-ee54-4052-a5fe-9097ba5cf603",
+     "metadata": {
+      "cellLabel": "Out[363]//MatrixForm= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wrow><w></w><wb>(</wb><w>⁠</w><wgrid style=\"grid-template-columns:repeat(1,max-content);\"><w><wrow><w></w><w>-</w><w>55</w></wrow></w><w><wrow><w></w><w>-</w><w>52</w></wrow></w><w><wrow><w></w><w>-</w><w>49</w></wrow></w><w><wrow><w></w><w>-</w><w>46</w></wrow></w><w><wrow><w></w><w>-</w><w>43</w></wrow></w><w><wrow><w></w><w>-</w><w>40</w></wrow></w><w><wrow><w></w><w>-</w><w>37</w></wrow></w></wgrid><w>⁠</w><wb>)</wb></wrow></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "MatrixForm[{-55, -52, -49, -46, -43, -40, -37}]",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "f469e8d3-9264-4678-9850-a2d01ea9c132",
+     "metadata": {
+      "cellLabel": "Out[364]//MatrixForm= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<pre>Test\n</pre>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "\"Test\\n\"",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "b744015d-2306-4996-9fba-72394655e07d",
+     "metadata": {
+      "cellLabel": "",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wrow><w></w><wb>{</wb><wrow><w></w><wrow><w></w><wb>{</wb><wrow><w></w><wfrac><w><w>13</w></w><w><w></w><w><w>14</w></w></w></wfrac><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>2</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>6</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>12</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>20</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>30</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>42</w></w></w></wfrac></wrow></wrow><wb>}</wb></wrow><w>,</w><wrow><w></w><wb>{</wb><wrow><w></w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>14</w></w></w></wfrac></wrow><w>,</w><wfrac><w><w>1</w></w><w><w></w><w><w>2</w></w></w></wfrac><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>6</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>12</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>20</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>30</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>42</w></w></w></wfrac></wrow></wrow><wb>}</wb></wrow><w>,</w><wrow><w></w><wb>{</wb><wrow><w></w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>14</w></w></w></wfrac></wrow><w>,</w><w>0</w><w>,</w><wfrac><w><w>1</w></w><w><w></w><w><w>3</w></w></w></wfrac><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>12</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>20</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>30</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>42</w></w></w></wfrac></wrow></wrow><wb>}</wb></wrow><w>,</w><wrow><w></w><wb>{</wb><wrow><w></w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>14</w></w></w></wfrac></wrow><w>,</w><w>0</w><w>,</w><w>0</w><w>,</w><wfrac><w><w>1</w></w><w><w></w><w><w>4</w></w></w></wfrac><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>20</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>30</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>42</w></w></w></wfrac></wrow></wrow><wb>}</wb></wrow><w>,</w><wrow><w></w><wb>{</wb><wrow><w></w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>14</w></w></w></wfrac></wrow><w>,</w><w>0</w><w>,</w><w>0</w><w>,</w><w>0</w><w>,</w><wfrac><w><w>1</w></w><w><w></w><w><w>5</w></w></w></wfrac><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>30</w></w></w></wfrac></wrow><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>42</w></w></w></wfrac></wrow></wrow><wb>}</wb></wrow><w>,</w><wrow><w></w><wb>{</wb><wrow><w></w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>14</w></w></w></wfrac></wrow><w>,</w><w>0</w><w>,</w><w>0</w><w>,</w><w>0</w><w>,</w><w>0</w><w>,</w><wfrac><w><w>1</w></w><w><w></w><w><w>6</w></w></w></wfrac><w>,</w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>42</w></w></w></wfrac></wrow></wrow><wb>}</wb></wrow><w>,</w><wrow><w></w><wb>{</wb><wrow><w></w><wrow><w></w><w>-</w><wfrac><w><w>1</w></w><w><w></w><w><w>14</w></w></w></wfrac></wrow><w>,</w><w>0</w><w>,</w><w>0</w><w>,</w><w>0</w><w>,</w><w>0</w><w>,</w><w>0</w><w>,</w><wfrac><w><w>1</w></w><w><w></w><w><w>7</w></w></w></wfrac></wrow><wb>}</wb></wrow></wrow><wb>}</wb></wrow></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "{{13/14, -1/2, -1/6, -1/12, -1/20, -1/30, -1/42}, {-1/14, 1/2, -1/6, -1/12, -1/20, -1/30, -1/42}, {-1/14, 0, 1/3, -1/12, -1/20, -1/30, -1/42}, {-1/14, 0, 0, 1/4, -1/20, -1/30, -1/42}, {-1/14, 0, 0, 0, 1/5, -1/30, -1/42}, {-1/14, 0, 0, 0, 0, 1/6, -1/42}, {-1/14, 0, 0, 0, 0, 0, 1/7}}",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "519c2d7f-13e7-4f70-ba65-8ef6e688bd1f",
+     "metadata": {
+      "cellLabel": "Out[366]= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><w>10080</w></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "10080",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "57d8082a-8351-4c8e-85a1-d741fda29359",
+     "metadata": {
+      "cellLabel": "Out[368]= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<pre>Right\n</pre>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "\"Right\\n\"",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "a123173d-67d2-4740-bdc4-803e8a9993ad",
+     "metadata": {
+      "cellLabel": "",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wgrid style=\"grid-template-columns:repeat(1,max-content);\"><w><w>0.000142857</w></w><w><w>0.0000164069</w></w><w><w>0.001</w></w></wgrid></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "TableForm[{0.0001428571428567782, 0.000016406890894133674, 0.0009999999999976694}]",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "a351a70d-9f80-42d2-a938-aefa6d8ec1d2",
+     "metadata": {
+      "cellLabel": "Out[377]//TableForm= ",
+      "isBoxData": false
+     }
+    }
+   ],
+   "metadata": {},
+   "executionSummary": {
+    "timing": {
+     "startTime": 1711607829110,
+     "endTime": 1711607831195
+    },
+    "executionOrder": 358,
+    "success": true
+   }
+  },
+  {
+   "kind": 2,
+   "value": "(*метод якоби*)\r\nn = 20;\r\na = Table[If[i == j, 2*n, 1], {i, 1, n}, {j, 1, n}];\r\nb = Table[(2*n - 1)*i + n*(n + 1)/2 + (3*n - 1)*28, {i, 1, n}];\r\nMatrixForm[a]\r\nMatrixForm[b]\r\nMatrixForm[LinearSolve[a, b]]\r\nrt = LinearSolve[a, b];\r\ne = 10^(-3);\r\nn2 = 20;\r\nmaxiter = 30;\r\niter = 0;\r\n\r\nSD = {};\r\nNList = {};\r\nm = 0;\r\ny = b;\r\nWhile[And[iter <=maxiter,m<n],\r\n    x = y;\r\n    iter++;\r\n    m = 0;\r\n    For[i = 1, i <= n, i++,\r\n        s = (Sum[a[[i,j]]*x[[j]],{j,1,n}]-b[[i]])/(a[[i,i]]);\r\n        y[[i]] = x[[i]] - s;\r\n        If[Abs[s] < e, m++];\r\n    ];\r\n    SD = Append[SD, x];\r\n    NList = Append[NList, Dot[a,x] - b];\r\n];\r\niter\r\n\r\nMatrixForm[SD[[iter]],1] \r\n\r\nNorm[rt - SD[[iter]],Infinity] // N\r\n\r\nNorm[rt - SD[[iter]],Infinity]/ Norm[rt,Infinity] // N\r\n\r\nNorm[Dot[a,SD[[iter]]] - b,Infinity]/Norm[Dot[a,SD[[1]]] - b,Infinity] // N\r\n\r\n",
+   "languageId": "wolfram",
+   "outputs": [
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wrow><w></w><wb>(</wb><w>⁠</w><wgrid style=\"grid-template-columns:repeat(20,max-content);\"><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w></wgrid><w>⁠</w><wb>)</wb></wrow></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "MatrixForm[{{40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40}}]",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "6633fd9a-8f07-416b-8347-497b43ea7e0c",
+     "metadata": {
+      "cellLabel": "Out[260]//MatrixForm= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wrow><w></w><wb>(</wb><w>⁠</w><wgrid style=\"grid-template-columns:repeat(1,max-content);\"><w><w>1901</w></w><w><w>1940</w></w><w><w>1979</w></w><w><w>2018</w></w><w><w>2057</w></w><w><w>2096</w></w><w><w>2135</w></w><w><w>2174</w></w><w><w>2213</w></w><w><w>2252</w></w><w><w>2291</w></w><w><w>2330</w></w><w><w>2369</w></w><w><w>2408</w></w><w><w>2447</w></w><w><w>2486</w></w><w><w>2525</w></w><w><w>2564</w></w><w><w>2603</w></w><w><w>2642</w></w></wgrid><w>⁠</w><wb>)</wb></wrow></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "MatrixForm[{1901, 1940, 1979, 2018, 2057, 2096, 2135, 2174, 2213, 2252, 2291, 2330, 2369, 2408, 2447, 2486, 2525, 2564, 2603, 2642}]",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "77e853bb-380f-45b0-8be0-2e1d741dbc99",
+     "metadata": {
+      "cellLabel": "Out[261]//MatrixForm= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wrow><w></w><wb>(</wb><w>⁠</w><wgrid style=\"grid-template-columns:repeat(1,max-content);\"><w><w>29</w></w><w><w>30</w></w><w><w>31</w></w><w><w>32</w></w><w><w>33</w></w><w><w>34</w></w><w><w>35</w></w><w><w>36</w></w><w><w>37</w></w><w><w>38</w></w><w><w>39</w></w><w><w>40</w></w><w><w>41</w></w><w><w>42</w></w><w><w>43</w></w><w><w>44</w></w><w><w>45</w></w><w><w>46</w></w><w><w>47</w></w><w><w>48</w></w></wgrid><w>⁠</w><wb>)</wb></wrow></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "MatrixForm[{29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48}]",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "8a6bc63e-101b-4882-877d-31a42be2a8d2",
+     "metadata": {
+      "cellLabel": "Out[262]//MatrixForm= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><w>22</w></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "22",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "b14909fd-649e-4fc0-902b-1e9306335b51",
+     "metadata": {
+      "cellLabel": "Out[273]= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wrow><w></w><wb>(</wb><w>⁠</w><wgrid style=\"grid-template-columns:repeat(1,max-content);\"><w><wfrac><w><w>31885438498053029174407932625479003</w></w><w><w></w><w><w>1099511627776000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>2638796010066322333952634610038321</w></w><w><w></w><w><w>87960930222080000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>17042230876802514587203966312739511</w></w><w><w></w><w><w>549755813888000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>70367946762762058348815865250958063</w></w><w><w></w><w><w>2199023255552000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>36283485009157029174407932625479041</w></w><w><w></w><w><w>1099511627776000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>74765993273866058348815865250958101</w></w><w><w></w><w><w>2199023255552000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>1924125413235451458720396631273953</w></w><w><w></w><w><w>54975581388800000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>79164039784970058348815865250958139</w></w><w><w></w><w><w>2199023255552000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>40681531520261029174407932625479079</w></w><w><w></w><w><w>1099511627776000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>83562086296074058348815865250958177</w></w><w><w></w><w><w>2199023255552000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>21440277387906514587203966312739549</w></w><w><w></w><w><w>549755813888000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>17592026561435611669763173050191643</w></w><w><w></w><w><w>439804651110400000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>45079578031365029174407932625479117</w></w><w><w></w><w><w>1099511627776000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>92358179318282058348815865250958253</w></w><w><w></w><w><w>2199023255552000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>1477456290216157161700247894546223</w></w><w><w></w><w><w>34359738368000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>96756225829386058348815865250958291</w></w><w><w></w><w><w>2199023255552000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>9895524908493805834881586525095831</w></w><w><w></w><w><w>219902325555200000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>101154272340490058348815865250958329</w></w><w><w></w><w><w>2199023255552000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>25838323899010514587203966312739587</w></w><w><w></w><w><w>549755813888000000000000000000000</w></w></w></wfrac></w><w><wfrac><w><w>105552318851594058348815865250958367</w></w><w><w></w><w><w>2199023255552000000000000000000000</w></w></w></wfrac></w></wgrid><w>⁠</w><wb>)</wb></wrow></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "MatrixForm[{31885438498053029174407932625479003/1099511627776000000000000000000000, 2638796010066322333952634610038321/87960930222080000000000000000000, 17042230876802514587203966312739511/549755813888000000000000000000000, 70367946762762058348815865250958063/2199023255552000000000000000000000, 36283485009157029174407932625479041/1099511627776000000000000000000000, 74765993273866058348815865250958101/2199023255552000000000000000000000, 1924125413235451458720396631273953/54975581388800000000000000000000, 79164039784970058348815865250958139/2199023255552000000000000000000000, 40681531520261029174407932625479079/1099511627776000000000000000000000, 83562086296074058348815865250958177/2199023255552000000000000000000000, 21440277387906514587203966312739549/549755813888000000000000000000000, 17592026561435611669763173050191643/439804651110400000000000000000000, 45079578031365029174407932625479117/1099511627776000000000000000000000, 92358179318282058348815865250958253/2199023255552000000000000000000000, 1477456290216157161700247894546223/34359738368000000000000000000000, 96756225829386058348815865250958291/2199023255552000000000000000000000, 9895524908493805834881586525095831/219902325555200000000000000000000, 101154272340490058348815865250958329/2199023255552000000000000000000000, 25838323899010514587203966312739587/549755813888000000000000000000000, 105552318851594058348815865250958367/2199023255552000000000000000000000}, 1]",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "bad08610-8d69-48a9-8b92-4e82f550f004",
+     "metadata": {
+      "cellLabel": "Out[274]//MatrixForm= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><w>0.000362622</w></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "0.00036262231421535545",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "41b1d40b-10c2-4e5f-9968-3cb602354ff6",
+     "metadata": {
+      "cellLabel": "Out[275]= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wsup><w></w><w>7.55463&#215;10</w><w><w>-6</w></w></wsup></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "7.554631546153239*^-6",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "b271c3ab-b2f9-4cf7-85a6-1bc299511080",
+     "metadata": {
+      "cellLabel": "Out[276]= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wsup><w></w><w>1.46714&#215;10</w><w><w>-7</w></w></wsup></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "1.4671400531253665*^-7",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "4a6f3216-d9e3-4e5c-9270-b39713507db5",
+     "metadata": {
+      "cellLabel": "Out[277]= ",
+      "isBoxData": false
+     }
+    }
+   ],
+   "metadata": {},
+   "executionSummary": {
+    "timing": {
+     "startTime": 1711607546704,
+     "endTime": 1711607548956
+    },
+    "executionOrder": 257,
+    "success": true
+   }
+  },
+  {
+   "kind": 2,
+   "value": "(*метод зейделя*)\r\n\r\nn = 20;\r\na = Table[If[i == j, 2*n, 1], {i, 1, n}, {j, 1, n}];\r\nb = Table[(2*n - 1)*i + n*(n + 1)/2 + (3*n - 1)*28, {i, 1, n}];\r\nMatrixForm[a]\r\nMatrixForm[b]\r\nMatrixForm[LinearSolve[a, b]]\r\nrt = LinearSolve[a, b];\r\ne = 10^(-3);\r\nn2 = 20;\r\nmaxiter = 30;\r\niter = 0;\r\n\r\nSD = {};\r\nNList = {};\r\nm = 0;\r\ny = b;\r\n\r\nWhile[And[iter <=maxiter,m<n],\r\n    x = y;\r\n    iter++;\r\n    m = 0;\r\n    For[i = 1, i <= n, i++,\r\n        t = (Sum[a[[i,j]]*y[[j]],{j,1,i-1}])/(a[[i,i]]);\r\n        s = (Sum[a[[i,j]]*x[[j]],{j,i,n}]-b[[i]])/(a[[i,i]]);\r\n        y[[i]] = x[[i]] - s - t;\r\n        If[Abs[s+t] < e, m++];\r\n    ];\r\n    SD = Append[SD, x];\r\n    NList = Append[NList, Dot[a,x] - b];\r\n];\r\niter\r\nMatrixForm[SD[[iter]],Infinity] // N\r\n\r\nNorm[rt - SD[[iter]],Infinity] // N\r\n\r\nNorm[rt - SD[[iter]],Infinity]/ Norm[rt,Infinity] // N\r\n\r\nNorm[Dot[a,SD[[iter]]] - b,Infinity] /Norm[Dot[a,SD[[1]]] - b, Infinity] // N",
+   "languageId": "wolfram",
+   "outputs": [
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wrow><w></w><wb>(</wb><w>⁠</w><wgrid style=\"grid-template-columns:repeat(20,max-content);\"><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>1</w></w><w><w>40</w></w></wgrid><w>⁠</w><wb>)</wb></wrow></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "MatrixForm[{{40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40}}]",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "4ddcebeb-610f-43e6-a946-9d5cac6a588b",
+     "metadata": {
+      "cellLabel": "Out[218]//MatrixForm= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wrow><w></w><wb>(</wb><w>⁠</w><wgrid style=\"grid-template-columns:repeat(1,max-content);\"><w><w>1901</w></w><w><w>1940</w></w><w><w>1979</w></w><w><w>2018</w></w><w><w>2057</w></w><w><w>2096</w></w><w><w>2135</w></w><w><w>2174</w></w><w><w>2213</w></w><w><w>2252</w></w><w><w>2291</w></w><w><w>2330</w></w><w><w>2369</w></w><w><w>2408</w></w><w><w>2447</w></w><w><w>2486</w></w><w><w>2525</w></w><w><w>2564</w></w><w><w>2603</w></w><w><w>2642</w></w></wgrid><w>⁠</w><wb>)</wb></wrow></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "MatrixForm[{1901, 1940, 1979, 2018, 2057, 2096, 2135, 2174, 2213, 2252, 2291, 2330, 2369, 2408, 2447, 2486, 2525, 2564, 2603, 2642}]",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "ecbb4919-268e-4982-90ad-51ac92ba9e9f",
+     "metadata": {
+      "cellLabel": "Out[219]//MatrixForm= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wrow><w></w><wb>(</wb><w>⁠</w><wgrid style=\"grid-template-columns:repeat(1,max-content);\"><w><w>29</w></w><w><w>30</w></w><w><w>31</w></w><w><w>32</w></w><w><w>33</w></w><w><w>34</w></w><w><w>35</w></w><w><w>36</w></w><w><w>37</w></w><w><w>38</w></w><w><w>39</w></w><w><w>40</w></w><w><w>41</w></w><w><w>42</w></w><w><w>43</w></w><w><w>44</w></w><w><w>45</w></w><w><w>46</w></w><w><w>47</w></w><w><w>48</w></w></wgrid><w>⁠</w><wb>)</wb></wrow></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "MatrixForm[{29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48}]",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "df486549-8b8b-4fc7-b0e8-ef6d4a6a1d92",
+     "metadata": {
+      "cellLabel": "Out[220]//MatrixForm= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><w>9</w></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "9",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "91ff9fe3-16a2-4598-9dc4-0e7f38ab7963",
+     "metadata": {
+      "cellLabel": "Out[231]= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wrow><w></w><wb>(</wb><w>⁠</w><wgrid style=\"grid-template-columns:repeat(1,max-content);\"><w><w>29.0001</w></w><w><w>30.</w></w><w><w>31.</w></w><w><w>32.</w></w><w><w>33.</w></w><w><w>33.9999</w></w><w><w>34.9999</w></w><w><w>35.9999</w></w><w><w>36.9999</w></w><w><w>37.9999</w></w><w><w>39.</w></w><w><w>40.</w></w><w><w>41.</w></w><w><w>42.</w></w><w><w>43.</w></w><w><w>44.</w></w><w><w>45.</w></w><w><w>46.</w></w><w><w>47.</w></w><w><w>48.</w></w></wgrid><w>⁠</w><wb>)</wb></wrow></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "MatrixForm[{29.000067131587716, 30.000030875088388, 31.000000369155856, 31.999976114000305, 32.99995816406426, 33.99994621733519, 34.99993970469434, 35.99993787490048, 36.99993987195289, 37.9999448025745, 38.99995179241818, 39.999960030338364, 40.999968800698575, 41.9999775042132, 42.9999856682602, 43.99999294795705, 44.99999911957663, 46.000004068098164, 47.00000777084942, 48.00001027930591}, Infinity]",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "8744f590-3749-432a-96ab-8edb7913aa58",
+     "metadata": {
+      "cellLabel": "Out[232]//MatrixForm= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><w>0.0000671316</w></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "0.00006713158771773643",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "9dedddbc-bd23-4266-aa02-b32525adcf6d",
+     "metadata": {
+      "cellLabel": "Out[233]= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wsup><w></w><w>1.39857&#215;10</w><w><w>-6</w></w></wsup></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "1.398574744119509*^-6",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "8f1791be-6e4b-42a2-96da-59f5e2b29077",
+     "metadata": {
+      "cellLabel": "Out[234]= ",
+      "isBoxData": false
+     }
+    },
+    {
+     "items": [
+      {
+       "data": "<div class=\"wexpr\"><wsup><w></w><w>1.9364&#215;10</w><w><w>-8</w></w></wsup></div>",
+       "mime": "x-application/wolfram-language-html"
+      },
+      {
+       "data": "1.9363980438354725*^-8",
+       "mime": "text/plain"
+      }
+     ],
+     "id": "e2d6c290-ab9d-4092-826e-846dbabb9ed8",
+     "metadata": {
+      "cellLabel": "Out[235]= ",
+      "isBoxData": false
+     }
+    }
+   ],
+   "metadata": {},
+   "executionSummary": {
+    "timing": {
+     "startTime": 1711607458262,
+     "endTime": 1711607460444
+    },
+    "executionOrder": 215,
+    "success": true
+   }
+  }
+ ]
+}
